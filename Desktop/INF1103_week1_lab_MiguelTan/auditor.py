@@ -11,3 +11,13 @@ while True:
         print("Error: Please enter a valid positive integer.")
         failed_entries += 1
         continue
+
+    else:
+        stock = int(stock)
+        inventory += stock
+
+        print("Current inventory:", inventory)
+
+        if inventory > 500:
+            print("OVERSTOCK ALERT!")
+            break
