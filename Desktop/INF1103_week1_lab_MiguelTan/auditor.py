@@ -6,3 +6,8 @@ while True:
 
     if stock.lower() == "quit":
         break
+
+    elif not stock.isdigit():
+        print("Error: Please enter a valid positive integer.")
+        failed_entries += 1
+        continue
