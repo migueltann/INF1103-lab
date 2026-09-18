@@ -25,11 +25,27 @@ def generate_report(total_units, failed_entries):
     print("Total Units Processed:", total_units)
     print("Number of Failed/Rejected Entries:", failed_entries)
 
+while True:
+    stock = get_valid_input()
+
+    if stock == "quit":
+        break
+    elif stock is None:
+        failed_entries += 1
+        continue
+
+    inventory = process_delivery(inventory, stock)
+    tax = calculate_tax(stock)
+
+    if inventory > 500:
+                print("OVERSTOCK ALERT!")
+                break
+
+generate_report(inventory, failed_entries)
+    
 
 
         
 
-        if inventory > 500:
-            print("OVERSTOCK ALERT!")
-            break
+        
         
