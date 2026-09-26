@@ -46,9 +46,10 @@ def generate_report(total_units, failed_entries):
     print("Number of Failed/Rejected Entries:", failed_entries)
 
 def main():
-    inventory = 0
-    failed_entries = 0 
-    tax_rate = 0.1     
+    inventory, transaction_history = load_inventory()
+
+    failed_entries = 0
+    tax_rate = 0.1
     exit_program = False
 
     while not exit_program:
@@ -61,13 +62,17 @@ def main():
             failed_entries += 1
             continue
 
-        inventory = process_delivery(inventory, stock)
-        tax = calculate_tax(stock, tax_rate)
+        else:
+            inventory = process_delivery(inventory, stock)
+            transaction_history.append(stock)
 
-        if inventory > 500:
-                    print("OVERSTOCK ALERT!")
-                    break
-                    
+            tax = calculate_tax(stock, tax_rate)
+
+            if inventory > 500:
+                print("OVERSTOCK ALERT!")
+                break
+
+    save_inventory(inventory, transaction_history)
     generate_report(inventory, failed_entries)
     
 if __name__ == "__main__":
