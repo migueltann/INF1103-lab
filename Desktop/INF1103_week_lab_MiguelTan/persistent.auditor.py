@@ -13,7 +13,13 @@ def load_inventory():
 
     except FileNotFoundError:
         return 0, []
-    
+
+def save_inventory(inventory, transaction_history):
+    with open("inventory.txt", "w") as file:
+        file.write(str(inventory) + "\n")
+
+        for transaction in transaction_history:
+            file.write(str(transaction) + "\n")
 
 def get_valid_input():
     stock = input("Enter stock quantity (or 'quit' to exit): ")
