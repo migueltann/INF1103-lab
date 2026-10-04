@@ -79,6 +79,40 @@ def search_product():
 
     print("Product not found")
 
+def display_menu():
+    print("----------- MENU -----------")
+    print("1. Display All Products")
+    print("2. Add Product")
+    print("3. Update Stock")
+    print("4. Search Product")
+    print("5. Save Inventory")
+    print("6. Exit")
+    print("----------------------------")
+
 
 load_inventory()
-display_all()
+
+while True:
+    display_menu()
+    choice = input("Enter your choice (1-6): ")
+
+    if choice == '1':
+        display_all()
+    elif choice == '2':
+        add_product()
+    elif choice == '3':
+        update_stock()
+    elif choice == '4':
+        search_product()
+    elif choice == '5':
+        save_inventory()
+    elif choice == '6':
+        print("Saving inventory before exit...")
+        save_inventory()
+        print("Thank you for using Inventory Management System.")
+        print("Program terminated.")
+        break
+    else:
+        print("Invalid choice. Please try again.")
+
+    
