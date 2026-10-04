@@ -2,6 +2,6 @@ FROM python:latest
 
 WORKDIR /usr/src/app
 
-COPY persistent.auditor.py .
+COPY inventory_manager.py .
 
-CMD ["python", "persistent.auditor.py"]
+CMD ["python", "inventory_manager.py"]
