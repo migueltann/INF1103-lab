@@ -1,3 +1,6 @@
+import json
+import os
+
 inventory = [
     {
         "id": "P001",
@@ -18,6 +21,20 @@ inventory = [
         "stock": 25
     }
 ]
+
+def save_inventory():
+    with open("inventory.json", "w") as file:
+        json.dump(inventory, file)
+        print("Inventory saved to inventory.json.")
+
+def load_inventory():
+    global inventory
+    if os.path.exists("inventory.json"):
+        with open("inventory.json", "r") as file:
+            inventory = json.load(file)
+    else:
+        inventory = []
+        
 
 def display_all():
     print("Current Inventory:")
@@ -60,8 +77,8 @@ def search_product():
             print(item)
             return
 
-    print("Product not found.")
+    print("Product not found")
 
-search_product()
-update_stock()
+
+load_inventory()
 display_all()
