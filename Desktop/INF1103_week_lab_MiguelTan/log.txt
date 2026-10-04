@@ -1,0 +1,95 @@
+commit a09ca2e0130f6d0aafa5006ff32b5f9c3ace5f3c
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Sat Sep 26 10:47:33 2026 +0800
+
+    Updated main function
+
+commit 912fa8a1a196e09b0cd8f5e0251f79a826303118
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Sat Sep 26 10:44:58 2026 +0800
+
+    Added save_inventory function
+
+commit 85a12869e3c4b8b3f71d1b3532d458ea16527df3
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Sat Sep 26 10:43:53 2026 +0800
+
+    Added load_inventory function
+
+commit caec5aa0e4624ce74be45b2ad58f8f719d5034d5
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Fri Sep 18 16:31:14 2026 +0800
+
+    Updated modular_auditor.py
+
+commit 0bd8cef5c9f002f09425e80d2118ea2a925e4e7d
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Fri Sep 18 16:24:44 2026 +0800
+
+    Finalised modular_auditor.py
+
+commit 147ef08914a80fb2fe1f7a36ea533d50c5697984
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Fri Sep 18 15:58:17 2026 +0800
+
+    Added tax and generate report function
+
+commit aa30de0bcb798ce92ce9c9d34208c723e94b9933
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Fri Sep 18 15:57:38 2026 +0800
+
+    Added process_delivery function
+
+commit 95b16dc44f1e8b92aeed622a0e8ef6832e338d28
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Fri Sep 18 15:51:59 2026 +0800
+
+    Added get_valid_input function
+
+commit b8332ce203036aeb96f1aac5ae1304b7d109e8de
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Fri Sep 11 17:11:36 2026 +0800
+
+    Check for overstock
+
+commit dfce76358213d4ccbb17f8bc28425a7a041358f2
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Fri Sep 11 17:10:06 2026 +0800
+
+    Check for valid integer
+
+commit 3f8255648abe55ed2c442f16fa3a98594d6c634e
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Fri Sep 11 17:05:35 2026 +0800
+
+    Add inventory input loop
+
+commit 6f55fe5cbf8ff6fac4442d4aaac6701881f1f5a6
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Fri Sep 11 17:03:38 2026 +0800
+
+    Initialize inventory auditor
+
+commit 92000c2a85023b66d3d45c829d56db9937e411d6
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Fri Sep 4 11:44:06 2026 +0800
+
+    Dynamic profile & Fun conditions
+
+commit 7472c88043e803cfb5219e8e010e15bd697c7ec9
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Fri Sep 4 11:34:52 2026 +0800
+
+    Add followers
+
+commit b3ff8f1ee22c87da999252206a3832caf092db9a
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Fri Sep 4 11:31:05 2026 +0800
+
+    Add profile
+
+commit 3bfd633c92f8affc7cdac7918ed0a711e5568bb1
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Fri Sep 4 11:24:17 2026 +0800
+
+    First Post
