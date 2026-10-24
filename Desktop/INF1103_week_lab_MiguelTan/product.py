@@ -11,6 +11,9 @@ class Product:
     def display_information(self):
         print(f"ID: {self.__product_id}, Name: {self.__name}, Price: ${self.__price:.2f}, Stock: {self.__stock}")
 
+    def get_id(self):
+        return self.__product_id
+
 
 if __name__ == "__main__":
     laptop = Product("P001", "Laptop", 1200.00, 15)
@@ -18,3 +21,4 @@ if __name__ == "__main__":
     laptop.display_information()
     laptop.update_stock(20)
     laptop.display_information()
+
