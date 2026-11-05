@@ -1,4 +1,5 @@
-from product import Product
+from physical_product import PhysicalProduct
+from digital_product import DigitalProduct
 
 class Inventory:
     def __init__(self):
@@ -22,8 +23,8 @@ class Inventory:
 if __name__ == "__main__":
     inventory = Inventory()
 
-    laptop = Product("P001", "Laptop", 1200.00, 15)
-    mouse = Product("P002", "Mouse", 25.50, 40)
+    laptop = PhysicalProduct("P001", "Laptop", 1200.00, 15, 2.5)
+    mouse = DigitalProduct("P002", "Photoshop", 25.50, 40, 100)
 
     inventory.add_product(laptop)
     inventory.add_product(mouse)

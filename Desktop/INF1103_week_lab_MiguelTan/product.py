@@ -1,9 +1,15 @@
-class Product:
+from abc import ABC, abstractmethod
+
+class Product(ABC):
     def __init__(self, product_id, name, price, stock):
         self.__product_id = product_id
         self.__name = name
         self.__price = price
         self.__stock = stock
+
+    @abstractmethod
+    def get_fulfilment_info(self):
+        pass
 
     def update_stock(self, quantity):
         self.__stock = quantity
@@ -21,13 +27,3 @@ class Product:
             "price": self.__price,
             "stock": self.__stock
         }
-
-
-if __name__ == "__main__":
-    laptop = Product("P001", "Laptop", 1200.00, 15)
-
-    laptop.display_information()
-    laptop.update_stock(20)
-    laptop.display_information()
-
-    print(laptop.to_dict())

@@ -1,4 +1,5 @@
-from product import Product
+from physical_product import PhysicalProduct
+from digital_product import DigitalProduct
 from inventory import Inventory
 
 import json
@@ -27,12 +28,28 @@ def load_inventory():
             product_data = json.load(file)
 
         for item in product_data:
-            new_product = Product(
-                item["id"],
-                item["name"],
-                item["price"],
-                item["stock"]
-            )
+            if item.get("type") == "physical":
+                new_product = PhysicalProduct(
+                    item["id"],
+                    item["name"],
+                    item["price"],
+                    item["stock"],
+                    item["weight"]
+                )
+
+            elif item.get("type") == "digital":
+                new_product = DigitalProduct(
+                    item["id"],
+                    item["name"],
+                    item["price"],
+                    item["stock"],
+                    item["download_size"]
+                )
+
+            else:
+                print("Unknown or missing product type:", item.get("type"))
+                continue
+
             inventory.add_product(new_product)
 
         print("Inventory loaded successfully!")
@@ -55,6 +72,16 @@ def display_menu():
 
 # Add a new product
 def handle_add_product():
+    print("Select Product Type:")
+    print("1. Physical Product")
+    print("2. Digital Product")
+
+    product_type = input("Enter product type (1-2): ").strip()
+
+    if product_type not in ("1", "2"):
+        print("Invalid product type!")
+        return
+
     product_id = input("Enter product ID: ").strip()
 
     if inventory.search_product(product_id) is not None:
@@ -82,7 +109,26 @@ def handle_add_product():
         print("Price and stock cannot be negative!")
         return
 
-    new_product = Product(product_id, name, price, stock)
+    if product_type == "1":
+        try:
+            weight = float(input("Enter product weight (kg): "))
+            if weight < 0:
+                print("Weight cannot be negative!")
+                return
+        except ValueError:
+            print("Invalid weight! Please enter a valid number.")
+            return
+        new_product = PhysicalProduct(product_id, name, price, stock, weight)
+    else:
+        try:
+            file_size = int(input("Enter file size (MB): "))
+            if file_size < 0:
+                print("File size cannot be negative!")
+                return
+        except ValueError:
+            print("Invalid file size! Please enter a valid number.")
+            return
+        new_product = DigitalProduct(product_id, name, price, stock, file_size)
 
     inventory.add_product(new_product)
 
