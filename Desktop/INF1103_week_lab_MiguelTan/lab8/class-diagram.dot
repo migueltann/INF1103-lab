@@ -1,0 +1,26 @@
+digraph Lab8 {
+    graph [rankdir=TB, bgcolor=white, nodesep=0.55, ranksep=0.95, pad=0.3, fontname="DejaVu Sans", label="INF1103 Lab 8  |  Inventory Management System", labelloc=t, fontsize=19];
+    node [shape=record, fontname="DejaVu Sans", fontsize=10, margin="0.14,0.11", style=filled, fillcolor="#f2f6fa", color="#263d53"];
+    edge [fontname="DejaVu Sans", fontsize=10, color="#263d53", labeldistance=1.8];
+
+    Supplier [label="{Supplier|- supplier_id: str\l- name: str\l- contact_email: str\l|+ Supplier(supplier_id: str, name: str, contact_email: str)\l+ display_information(): None\l+ to_dict(): dict[str, str]\l}"];
+    Product [label="{«abstract» Product|- product_id: str\l- name: str\l- price: float\l- stock: int\l+ supplier: Supplier\l|+ Product(product_id: str, name: str, price: float,\l   stock: int, supplier: Supplier)\l+ price: float (read-only)\l+ get_id(): str\l+ update_stock(quantity: int): None\l+ display_information(): None\l+ get_fulfilment_info(): str (abstract)\l+ to_dict(): Product data\l}"];
+    Inventory [label="{Inventory|+ products: list[Product]\l|+ Inventory()\l+ add_product(product: Product): None\l+ remove_product(product_id: str): None\l+ find_product(product_id: str): Product or None\l+ search_product(product_id: str): Product or None\l+ display_all(): None\l}"];
+    PhysicalProduct [label="{PhysicalProduct|- weight: float\l|+ PhysicalProduct(product_id: str, name: str, price: float,\l   stock: int, weight: float, supplier: Supplier)\l+ get_fulfilment_info(): str\l+ calculate_shipping_cost(): float\l+ display_information(): None\l+ to_dict(): Product data\l}"];
+    DigitalProduct [label="{DigitalProduct|- download_size: float\l|+ DigitalProduct(product_id: str, name: str, price: float,\l   stock: int, download_size: float, supplier: Supplier)\l+ get_fulfilment_info(): str\l+ display_information(): None\l+ to_dict(): Product data\l}"];
+    CanBeShipped [label="{«interface» CanBeShipped|+ calculate_shipping_cost(): float\l}"];
+    Order [label="{Order|+ order_id: str\l- order_lines: list[OrderLine]\l|+ Order(order_id: str)\l+ order_lines: tuple of OrderLine (read-only view)\l+ add_order_line(product: Product, quantity: int): None\l+ remove_order_line(index: int): None\l+ calculate_total(): float\l}"];
+    OrderLine [label="{OrderLine|+ product: Product\l+ quantity: int\l|+ OrderLine(product: Product, quantity: int)\l+ calculate_subtotal(): float\l}"];
+    Data [shape=note, label="Product data\ndict with string keys and values of\ntype str, float, int, or dict[str, str]", fillcolor="#fff8e8"];
+
+    {rank=same; Supplier; Inventory; Order;}
+    {rank=same; PhysicalProduct; DigitalProduct; Data;}
+    Supplier -> Product [dir=none, taillabel="1", headlabel="0..*", label="supplies"];
+    Inventory -> Product [dir=back, arrowtail=odiamond, taillabel="0..*", headlabel="0..*", label="contains"];
+    Order -> OrderLine [dir=back, arrowtail=diamond, taillabel="1", headlabel="0..*", label="owns"];
+    Product -> OrderLine [dir=none, taillabel="1", headlabel="0..*", label="referenced by"];
+    Product -> PhysicalProduct [dir=back, arrowtail=empty];
+    Product -> DigitalProduct [dir=back, arrowtail=empty];
+    Product -> Data [style=invis];
+    PhysicalProduct -> CanBeShipped [style=dashed, arrowhead=empty];
+}
