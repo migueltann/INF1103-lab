@@ -1,19 +1,23 @@
+
 from product import Product
+from supplier import Supplier
+
 
 class DigitalProduct(Product):
-    def __init__(self, product_id, name, price, stock, download_size):
-        super().__init__(product_id, name, price, stock)  # Reuse the parent's constructor
-        self.__download_size = download_size  # Initialise the download_size attribute
+    def __init__(self, product_id: str, name: str, price: float,
+                 stock: int, download_size: float, supplier: Supplier):
+        super().__init__(product_id, name, price, stock, supplier)
+        self.__download_size = download_size
 
-    def get_fulfilment_info(self):
-            return "This product is delivered digitally."
+    def get_fulfilment_info(self) -> str:
+        return "This product is delivered digitally."
 
-    def to_dict(self):
-            data = super().to_dict()
-            data["type"] = "digital"
-            data["download_size"] = self.__download_size
-            return data
+    def to_dict(self) -> dict:
+        data = super().to_dict()
+        data["type"] = "digital"
+        data["download_size"] = self.__download_size
+        return data
 
-    def display_information(self):
-        super().display_information()  # Call the parent's display_information method
-        print("Download Size:", self.__download_size, "MB")  # Display the download size
+    def display_information(self) -> None:
+        super().display_information()
+        print("Download Size:", self.__download_size, "MB")
