@@ -1,3 +1,9 @@
+commit 943ec33e85d68cde3933ee817e2d0ba42c67dad1
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Fri Nov 20 21:24:19 2026 +0800
+
+    Complete INF1103 Lab 9 design patterns and error handling
+
 commit 008b9c8054ef0edc974d856c02fbb319ccf342d3
 Author: migueltann <miguel_tan@icloud.com>
 Date:   Fri Nov 13 12:44:26 2026 +0800
