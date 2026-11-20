@@ -30,16 +30,15 @@ class Inventory:
 
 
 if __name__ == "__main__":
-    from digital_product import DigitalProduct
-    from physical_product import PhysicalProduct
+    from product_factory import ProductFactory
     from supplier import Supplier
 
     inventory = Inventory()
 
     supplier = Supplier("S001", "Tech Supplier", "tech@example.com")
 
-    laptop = PhysicalProduct("P001", "Laptop", 1200.00, 15, 2.5, supplier)
-    mouse = DigitalProduct("P002", "Photoshop", 25.50, 40, 100, supplier)
+    laptop = ProductFactory.create("physical", "P001", "Laptop", 1200.00, 15, supplier, weight=2.5)
+    mouse = ProductFactory.create("digital", "P002", "Photoshop", 25.50, 40, supplier, download_size=100)
 
     inventory.add_product(laptop)
     inventory.add_product(mouse)

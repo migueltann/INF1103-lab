@@ -1,3 +1,93 @@
+commit 008b9c8054ef0edc974d856c02fbb319ccf342d3
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Fri Nov 13 12:44:26 2026 +0800
+
+    Complete INF1103 Lab 8 object relationships
+
+commit ee1871c1fb6d08aaa9e98cc6b392d759aef56d58
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Fri Nov 13 12:11:53 2026 +0800
+
+    Add supplier association and type hints
+
+commit e4b502d923b19b318527a68c0027e94ea78fb2f3
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Thu Nov 5 15:15:57 2026 +0800
+
+    Fix Dockerfile to include all OOP classes
+
+commit 9c733d605589d39816d25008e0f2d09f90268ddb
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Thu Nov 5 15:08:36 2026 +0800
+
+    Complete Lab 7 OOP inheritance and abstraction
+
+commit 2df91786215046aa3d82336d13f30b6f633bcfd4
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Sat Oct 24 22:08:49 2026 +0800
+
+    Refactor inventory management system using OOP
+
+commit 2365825e1fb4618e7787ba280df5069effaf4f40
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Sat Oct 24 21:01:00 2026 +0800
+
+    Create Inventory class to manage products
+
+commit 84481709d8097a62bd10d7d24f7023fa8e5e9041
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Sat Oct 24 20:46:35 2026 +0800
+
+    Create Product class with encapsulation
+
+commit 86b758aa9dcc718d89b8ddff01477859a063835b
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Sun Oct 4 22:33:06 2026 +0800
+
+    Update Dockerfile for inventory manager
+
+commit cc6d89829230e85cb25244c6f45fbe9b65dd7913
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Sun Oct 4 22:06:56 2026 +0800
+
+    Complete inventory management system with JSON persistence
+
+commit a56504eb49bc2a27c8371f82f86e89e613777e66
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Sun Oct 4 21:52:49 2026 +0800
+
+    Add inventory loading from JSON
+
+commit 82763b230f42dfbe23400fbcdd9c65d7cfe84625
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Sun Oct 4 21:38:44 2026 +0800
+
+    Add search_product function
+
+commit cff13eb7d1fa80eecce2e6401a244575fe9c2029
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Sun Oct 4 21:38:00 2026 +0800
+
+    Add update_stock function
+
+commit 668c01936d4f8d92d83308e9960da14921e0f60f
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Sun Oct 4 21:24:38 2026 +0800
+
+    Add add_product function
+
+commit 7a5a01f17344fc878a192b132471d0802a4991f7
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Sun Oct 4 21:21:56 2026 +0800
+
+    Add display_all function
+
+commit 460822343cdb032d69ecac613c0c3e6dcd4b7321
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Sun Oct 4 21:16:29 2026 +0800
+
+    Create inventory manager file & create inventory dictionary
+
 commit a09ca2e0130f6d0aafa5006ff32b5f9c3ace5f3c
 Author: migueltann <miguel_tan@icloud.com>
 Date:   Sat Sep 26 10:47:33 2026 +0800

@@ -1,5 +1,9 @@
-from physical_product import PhysicalProduct
-from digital_product import DigitalProduct
+from product_factory import ProductFactory
+from input_helpers import get_positive_float
+from csv_loader import load_products
+from percentage_discount import PercentageDiscount
+from bulk_discount import BulkDiscount
+from student_discount import StudentDiscount
 from inventory import Inventory
 from order import Order
 from supplier import Supplier
@@ -28,8 +32,12 @@ def save_inventory() -> None:
 
 def load_inventory() -> None:
     if os.path.exists("inventory.json"):
-        with open("inventory.json", "r") as file:
-            product_data = json.load(file)
+        try:
+            with open("inventory.json", "r") as file:
+                product_data = json.load(file)
+        except (OSError, json.JSONDecodeError) as error:
+            print(f"Unable to load inventory: {error}")
+            return
 
         for item in product_data:
             supplier_data = item.get("supplier")
@@ -48,28 +56,15 @@ def load_inventory() -> None:
                     "unknown@example.com"
                 )
 
-            if item.get("type") == "physical":
-                new_product = PhysicalProduct(
-                    item["id"],
-                    item["name"],
-                    item["price"],
-                    item["stock"],
-                    item["weight"],
-                    supplier
+            try:
+                new_product = ProductFactory.create(
+                    item.get("type", ""), item["id"], item["name"],
+                    float(item["price"]), int(item["stock"]), supplier,
+                    weight=item.get("weight"),
+                    download_size=item.get("download_size")
                 )
-
-            elif item.get("type") == "digital":
-                new_product = DigitalProduct(
-                    item["id"],
-                    item["name"],
-                    item["price"],
-                    item["stock"],
-                    item["download_size"],
-                    supplier
-                )
-
-            else:
-                print("Unknown or missing product type:", item.get("type"))
+            except (ValueError, KeyError, TypeError) as error:
+                print(f"Skipping invalid saved product: {error}")
                 continue
 
             inventory.add_product(new_product)
@@ -91,6 +86,8 @@ def display_menu() -> None:
     print("6. Exit")
     print("7. Remove Product")
     print("8. Price an Order")
+    print("9. Load Products from CSV")
+    print("10. Price an Order with Discount")
     print("----------------------------")
 
 
@@ -122,15 +119,15 @@ def handle_add_product() -> None:
         print("Product name cannot be empty!")
         return
 
+    price = get_positive_float("Enter product price: ")
     try:
-        price = float(input("Enter product price: "))
         stock = int(input("Enter product stock quantity: "))
     except ValueError:
         print("Invalid input! Please enter valid numbers.")
         return
 
-    if price < 0 or stock < 0:
-        print("Price and stock cannot be negative!")
+    if stock < 0:
+        print("Stock cannot be negative!")
         return
 
 
@@ -156,7 +153,7 @@ def handle_add_product() -> None:
         except ValueError:
             print("Invalid weight! Please enter a valid number.")
             return
-        new_product = PhysicalProduct(product_id, name, price, stock, weight, supplier)
+        new_product = ProductFactory.create("physical", product_id, name, price, stock, supplier, weight=weight)
     else:
         try:
             file_size = int(input("Enter file size (MB): "))
@@ -166,7 +163,7 @@ def handle_add_product() -> None:
         except ValueError:
             print("Invalid file size! Please enter a valid number.")
             return
-        new_product = DigitalProduct(product_id, name, price, stock, file_size, supplier)
+        new_product = ProductFactory.create("digital", product_id, name, price, stock, supplier, download_size=file_size)
 
     inventory.add_product(new_product)
 
@@ -217,7 +214,7 @@ def handle_remove_product() -> None:
     print("Product removed from inventory.")
 
 
-def handle_price_order() -> None:
+def handle_price_order(choose_discount: bool = False) -> None:
     order_id = input("Enter order ID: ").strip()
     if not order_id:
         print("Order ID cannot be empty!")
@@ -238,6 +235,20 @@ def handle_price_order() -> None:
     print(f"Order {order.order_id}")
     for line in order.order_lines:
         print(f"{line.product.get_id()} x {line.quantity}: ${line.calculate_subtotal():.2f}")
+    print(f"Order total before discount: ${order.calculate_total():.2f}")
+    if choose_discount:
+        print("Discount: 1=None, 2=10%, 3=Bulk ($20 off $200+), 4=Student (5%)")
+        choice = input("Choose discount (1-4): ").strip()
+    else:
+        choice = "1"
+    if choice == "2":
+        order.set_discount(PercentageDiscount(10))
+    elif choice == "3":
+        order.set_discount(BulkDiscount(200, 20))
+    elif choice == "4":
+        order.set_discount(StudentDiscount())
+    elif choice != "1":
+        print("Unknown discount; no discount applied.")
     print(f"Order total: ${order.calculate_total():.2f}")
 
 
@@ -247,7 +258,7 @@ def main() -> None:
 
     while True:
         display_menu()
-        choice = input("Enter your choice (1-8): ").strip()
+        choice = input("Enter your choice (1-10): ").strip()
 
         if choice == "1":
             inventory.display_all()
@@ -277,6 +288,12 @@ def main() -> None:
         elif choice == "8":
             handle_price_order()
 
+        elif choice == "10":
+            handle_price_order(choose_discount=True)
+        elif choice == "9":
+            path = input("CSV file path [products.csv]: ").strip() or "products.csv"
+            supplier = Supplier("CSV", "CSV Supplier", "csv@example.com")
+            load_products(path, inventory, supplier)
         else:
             print("Invalid choice. Please try again.")
 
