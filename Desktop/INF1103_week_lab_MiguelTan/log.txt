@@ -1,3 +1,9 @@
+commit 801cc4c392d92177e2f986580b495f78102caecd
+Author: migueltann <miguel_tan@icloud.com>
+Date:   Fri Nov 20 21:25:45 2026 +0800
+
+    Update Git log for Lab 9
+
 commit 943ec33e85d68cde3933ee817e2d0ba42c67dad1
 Author: migueltann <miguel_tan@icloud.com>
 Date:   Fri Nov 20 21:24:19 2026 +0800
